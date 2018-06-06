@@ -43,19 +43,19 @@ const port = process.env.PORT || 3024
 // app.use(cors());
 // app.use(express.json())
 
-// app.get('/companies', (req, res, next) => {
-//     knex('companies')
-//         .orderBy('name', 'desc')
-//         .then(companies => res.json({companies: companies}))
-// })
+app.get('/companies', (req, res, next) => {
+    knex('companies')
+        .orderBy('name', 'desc')
+        .then(companies => res.json({companies: companies}))
+})
 
-// app.post('/companies', (req, res, next) => {
-//     knex('companies').insert(req.body).then(() => {
-//       knex('companies')
-//         .orderBy('name', 'desc')
-//         .then(companies => res.json(companies))
-//     })
-//   })
+app.post('/companies', (req, res, next) => {
+    knex('companies').insert(req.body).then(() => {
+      knex('companies')
+        .orderBy('name', 'desc')
+        .then(companies => res.json(companies))
+    })
+  })
 
 // app.post('/visionApi', (req, res, next) => {
 //     const vision = require('@google-cloud/vision');
@@ -87,11 +87,9 @@ const port = process.env.PORT || 3024
 
 app.post('/vision', (req, res, next) => {
     console.log(req.body.image)
-    const road = 'https://vision.googleapis.com/v1/images:annotate?key=f2b2c73d3372eea3e439abbfb9cd37512841e3a4'
+    const road = 'https://vision.googleapis.com/v1/images:'
     const picture = req.body.image
-    const payload = 
-    
-    axios.post ('https://vision.googleapis.com/v1/images:annotate?key=f2b2c73d3372eea3e439abbfb9cd37512841e3a4', {
+    const payload = {
         "requests":[
           {
 			"image":{
@@ -107,9 +105,9 @@ app.post('/vision', (req, res, next) => {
             ]
           }
         ]
-      })
+      }
     
-    // axios.post(road, payload)
+    axios.post(road, payload)
         .then(response => {
             console.log(response)
         })
