@@ -8,8 +8,7 @@ class ImgForm extends Component {
         e.preventDefault();
         console.log(e.target.image.value)
         const image = e.target.image.value
-        // axios.post('vision').then(console.log('hello me'))
-        axios.post('/vision', {image}).then(console.log("hi mom"))
+        axios.post('/vision').then(console.log("bombs away"))
     }
 
     render() {

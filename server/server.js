@@ -86,9 +86,9 @@ app.post('/companies', (req, res, next) => {
 
 
 app.post('/vision', (req, res, next) => {
-    console.log(req.body.image)
-    const road = 'https://vision.googleapis.com/v1/images:'
-    const picture = req.body.image
+    console.log(req.body)
+    const road = 'https://vision.googleapis.com/v1/images:annotate?key='
+    // const picture = req.body.image
     const payload = {
         "requests":[
           {
