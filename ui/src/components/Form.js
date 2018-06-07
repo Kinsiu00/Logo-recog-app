@@ -6,11 +6,14 @@ class ImgForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.image.value)
         const image = e.target.image.value
-        axios.post('/vision').then(console.log("bombs away"))
+        axios.post('/vision', {image}).then(
+            (result) => {
+                console.log(result.data)
+                this.props.setCompany(result.data)
+            })
     }
-
+    "bombs away"
     render() {
         return (
             <form onSubmit={this.onSubmit}>
