@@ -6,6 +6,7 @@ const knex = require('../db/knex')
 const cors = require('cors')
 const morgan = require('morgan')
 const axios = require('axios')
+const key = require('../vision')
 
 const port = process.env.PORT || 3024
 
@@ -30,7 +31,7 @@ app.post('/companies', (req, res, next) => {
 
 app.post('/vision', (req, res, next) => {
     console.log(req.body)
-    const road = 'https://vision.googleapis.com/v1/images:annotate?key='
+    const road = `https://vision.googleapis.com/v1/images:annotate?key=${key}`
     const picture = req.body.image
     const payload = {
         "requests":[
